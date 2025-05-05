@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RIPM Dashboard · Awareness & Reach (Prototype)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Add Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+  <!-- ===== Header ===== -->
+  <header class="sticky top-0 z-10 bg-white/90 backdrop-blur shadow-sm flex items-center justify-between px-6 py-3">
+    <h1 class="text-lg font-semibold">Strategic Result → <span class="font-bold text-indigo-600">Audiences Are Engaged & Loyal</span></h1>
+    <div class="flex items-center gap-3">
+      <label class="sr-only" for="section">Section</label>
+      <select id="section" class="border rounded px-2 py-1 text-sm lg:hidden">
+        <option selected>Two‑Way Relationship</option>
+        <option>Awareness & Reach</option>
+        <option>Digital Platform Engagement</option>
+      </select>
+      <label class="text-sm mr-1 hidden lg:block" for="fy">FY</label>
+      <select id="fy" class="border rounded px-2 py-1 text-sm">
+        <option>2025</option>
+        <option selected>2026</option>
+        <option>2027</option>
+      </select>
+    </div>
+  </header>
+
+  <div class="lg:flex">
+    <!-- ===== Sidebar ===== -->
+    <aside class="hidden lg:block w-56 border-r bg-white min-h-screen p-4">
+      <nav class="space-y-3 text-sm">
+        <!-- Dashboard Link -->
+        <div>
+          <a href="dashboard.html" class="block px-3 py-2 rounded hover:bg-slate-100">Dashboard Overview</a>
+        </div>
+      
+        <!-- Strategic Result 1 -->
+        <div>
+          <h3 class="px-3 text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">Engaged & Loyal</h3>
+          <a href="two_way_relationship.html" class="block pl-6 pr-3 py-2 rounded hover:bg-slate-100">Two-Way Relationship</a>
+          <a href="unknown_ambassadors.html" class="block pl-6 pr-3 py-2 rounded hover:bg-slate-100 font-medium text-indigo-600">Unknown Ambassadors</a>
+        </div>
+      
+        <!-- Strategic Result 2 -->
+        <div>
+          <h3 class="px-3 text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">Community Presence</h3>
+          <a href="community_interest.html" class="block pl-6 pr-3 py-2 rounded hover:bg-slate-100">Community Interest</a>
+          <a href="news_content_output.html" class="block pl-6 pr-3 py-2 rounded hover:bg-slate-100">News Content Output</a>
+          <a href="sponsors_value.html" class="block pl-6 pr-3 py-2 rounded hover:bg-slate-100">Sponsor Value</a>
+        </div>
+      
+        <!-- Strategic Result 3 -->
+         <div>
+          <h3 class="px-3 text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">Financial Resilience</h3>
+          <a href="membership_model.html" class="block pl-6 pr-3 py-2 rounded hover:bg-slate-100">Membership Model</a>
+          <a href="local_revenue.html" class="block pl-6 pr-3 py-2 rounded hover:bg-slate-100">Local Revenue</a>
+          <a href="gross_margin.html" class="block pl-6 pr-3 py-2 rounded hover:bg-slate-100">Gross Margin Rate</a>
+        </div>
+      
+        <!-- Strategic Result 4 -->
+         <div>
+          <h3 class="px-3 text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">Unified Organization</h3>
+          <a href="org_flow.html" class="block pl-6 pr-3 py-2 rounded hover:bg-slate-100">Org Flow & Agility</a>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- ===== Main ===== -->
+    <main class="flex-1 p-6 space-y-10">
+      <!-- ==== Definition card ==== -->
+      <section class="bg-white shadow rounded-xl p-6 border-l-4 border-teal-500 relative">
+        <h2 class="text-xl font-semibold">Measure Two: Unknown Ambassadors</h2>
+        <span class="absolute top-6 right-6 group cursor-help" aria-label="Metric rules apply to the fiscal year.">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-400 group-hover:text-teal-600 transition" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10c0 4.418-3.582 8-8 8s-8-3.582-8-8 3.582-8 8-8 8 3.582 8 8zm-8-4a1 1 0 110-2 1 1 0 010 2zm1 11V9H9v8h2z" clip-rule="evenodd"/></svg>
+        </span>
+        <p class="text-sm leading-relaxed mt-2">Focuses on understanding and growing the segment of our audience that engages regularly but remains anonymous. These individuals consume content across broadcast, livestreams, digital platforms, and social media without subscribing, registering, or donating. We track behaviors like CUME, returning visitors, P1 listeners, streaming time, and organic social engagement/reach to get a complete picture and design strategies to deepen relationships.</p>
+      </section>
+
+      <!-- ==== KPI Scorecards ==== -->
+      <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Scorecard 1: Broadcast CUME -->
+          <div class="bg-white shadow rounded-xl p-5">
+              <h4 class="text-sm text-slate-500 font-medium">Total Broadcast CUME</h4>
+              <p class="text-3xl font-semibold text-slate-800 mt-1">2.28M</p> 
+              <p class="text-xs mt-1 flex items-center text-green-600 font-medium">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-0.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" /></svg>
+                  +7.5% QoQ
+              </p>
+          </div>
+          <!-- Scorecard 2: Returning Visitors -->
+           <div class="bg-white shadow rounded-xl p-5">
+              <h4 class="text-sm text-slate-500 font-medium">Returning Visitors</h4>
+              <p class="text-3xl font-semibold text-slate-800 mt-1">62k</p> 
+              <p class="text-xs mt-1 flex items-center text-green-600 font-medium">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-0.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" /></svg>
+                  +3.3% QoQ
+              </p>
+          </div>
+           <!-- Scorecard 3: Total Platform Time Spent -->
+           <div class="bg-white shadow rounded-xl p-5">
+              <h4 class="text-sm text-slate-500 font-medium">Total Platform Time Spent</h4>
+              <p class="text-3xl font-semibold text-slate-800 mt-1">28.1k <span class="text-lg font-normal text-slate-400">Hrs</span></p>
+              <p class="text-xs mt-1 flex items-center text-green-600 font-medium">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-0.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" /></svg>
+                  +10.0% QoQ
+              </p>
+          </div>
+           <!-- Scorecard 4: Organic Engagement -->
+           <div class="bg-white shadow rounded-xl p-5">
+              <h4 class="text-sm text-slate-500 font-medium">Organic Engagement</h4>
+              <p class="text-3xl font-semibold text-slate-800 mt-1">6k</p> 
+              <p class="text-xs mt-1 flex items-center text-green-600 font-medium">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-0.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" /></svg>
+                  +15.4% QoQ
+              </p>
+          </div>
+      </section>
+
+      <!-- ==== Integrated Trend Chart Sections ==== -->
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <!-- Broadcast Reach Card -->
+          <div class="bg-white shadow rounded-xl p-6">
+              <h3 class="text-lg font-medium text-gray-700 mb-3">Broadcast Reach</h3>
+              <p class="text-sm text-gray-500 mb-3">TV CUME (Comscore) & Radio CUME (Nielsen)</p>
+              <div class="chart-container h-64 relative">
+                 <canvas id="broadcastReachChart"></canvas>
+              </div>
+          </div>
+
+          <!-- Digital Engagement Card -->
+          <div class="bg-white shadow rounded-xl p-6">
+              <h3 class="text-lg font-medium text-gray-700 mb-3">Digital Engagement</h3>
+              <p class="text-sm text-gray-500 mb-3">Returning Website Visitors (GA4: TPR + RIPBS)</p>
+               <div class="chart-container h-64 relative">
+                  <canvas id="digitalEngagementChart"></canvas>
+               </div>
+          </div>
+
+          <!-- Platform Time Spent Card -->
+          <div class="bg-white shadow rounded-xl p-6">
+              <h3 class="text-lg font-medium text-gray-700 mb-3">Platform Time Spent</h3>
+              <p class="text-sm text-gray-500 mb-3">Time Spent (DirectTV, Hulu, Prime, YouTubeTV)</p>
+              <div class="chart-container h-64 relative">
+                  <canvas id="platformTimeSpentChart"></canvas>
+              </div>
+          </div>
+
+          <!-- Social Impact Card -->
+          <div class="bg-white shadow rounded-xl p-6">
+              <h3 class="text-lg font-medium text-gray-700 mb-3">Social Impact</h3>
+              <p class="text-sm text-gray-500 mb-3">Organic Engagement & Reach (Meta, YouTube, X)</p>
+              <div class="chart-container h-64 relative">
+                  <canvas id="socialImpactChart"></canvas>
+              </div>
+          </div>
+
+          <!-- Listeners & Views Card -->
+          <div class="bg-white shadow rounded-xl p-6">
+              <h3 class="text-lg font-medium text-gray-700 mb-3">Listeners & Views</h3>
+              <p class="text-sm text-gray-500 mb-3">P1 Listeners (Nielsen) & Livestream Views (StreamGuys)</p>
+              <div class="chart-container h-64 relative">
+                  <canvas id="listenersViewsChart"></canvas>
+              </div>
+          </div>
+
+      </section>
+
+      <!-- ==== Data table (Collapsible) ==== -->
+      <section class="bg-white shadow rounded-xl p-4">
+        <button id="toggleTableBtn" class="w-full flex justify-between items-center text-slate-700 text-sm font-medium transition hover:text-indigo-600">
+          <span>Show Data & Measurement Details</span>
+          <svg id="toggleTableIcon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div id="dataTableSection" class="hidden mt-4 pt-4 border-t border-slate-200 overflow-x-auto">
+          <h3 class="text-base font-medium mb-4">Data & Measurement Details</h3>
+          <table class="min-w-max w-full text-sm border-collapse">
+            <thead class="bg-slate-100 text-left whitespace-nowrap">
+              <tr>
+                <th class="px-4 py-2 font-semibold">Metric</th>
+                <th class="px-4 py-2 font-semibold">Data Source</th>
+                <th class="px-4 py-2 font-semibold">Ingestion Method</th>
+                <th class="px-4 py-2 font-semibold">Reporting Frequency</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr>
+                <td class="px-4 py-3 sticky left-0 bg-white font-medium">Monthly TV CUME</td>
+                <td class="px-4 py-3">Comscore</td>
+                <td class="px-4 py-3">Vendor Report</td>
+                <td class="px-4 py-3">Quarterly</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 sticky left-0 bg-white font-medium">Avg Weekly Radio CUME</td>
+                <td class="px-4 py-3">Nielsen</td>
+                <td class="px-4 py-3">Vendor Report</td>
+                <td class="px-4 py-3">Quarterly</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 sticky left-0 bg-white font-medium">DirectTV Time Spent</td>
+                <td class="px-4 py-3">DirectTV</td>
+                <td class="px-4 py-3">Vendor Report</td>
+                <td class="px-4 py-3">Quarterly</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 sticky left-0 bg-white font-medium">Hulu Time Spent</td>
+                <td class="px-4 py-3">Hulu</td>
+                <td class="px-4 py-3">Vendor Report</td>
+                <td class="px-4 py-3">Quarterly</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 sticky left-0 bg-white font-medium">Prime Time Spent</td>
+                <td class="px-4 py-3">Prime</td>
+                <td class="px-4 py-3">Vendor Report</td>
+                <td class="px-4 py-3">Quarterly</td>
+              </tr>
+               <tr>
+                <td class="px-4 py-3 sticky left-0 bg-white font-medium">YouTubeTV Time Spent</td>
+                <td class="px-4 py-3">YouTubeTV</td>
+                <td class="px-4 py-3">Vendor Report</td>
+                <td class="px-4 py-3">Quarterly</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 sticky left-0 bg-white font-medium">Streaming</td>
+                <td class="px-4 py-3">StreamGuys</td>
+                <td class="px-4 py-3">API</td>
+                <td class="px-4 py-3">Quarterly</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 sticky left-0 bg-white font-medium">Returning visitors (TPR + RIPBS)</td>
+                <td class="px-4 py-3">GA4</td>
+                <td class="px-4 py-3">Platform</td>
+                <td class="px-4 py-3">Quarterly</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 sticky left-0 bg-white font-medium">P1 Listeners</td>
+                <td class="px-4 py-3">Nielsen</td>
+                <td class="px-4 py-3">Vendor Report</td>
+                <td class="px-4 py-3">Quarterly</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 sticky left-0 bg-white font-medium">Organic social engagement</td>
+                <td class="px-4 py-3">Meta, YouTube, X</td>
+                <td class="px-4 py-3">Platform Insights</td>
+                <td class="px-4 py-3">Quarterly</td>
+              </tr>
+               <tr>
+                <td class="px-4 py-3 sticky left-0 bg-white font-medium">Organic reach</td>
+                <td class="px-4 py-3">Meta, YouTube, X</td>
+                <td class="px-4 py-3">Platform Insights</td>
+                <td class="px-4 py-3">Quarterly</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const quarterlyLabels = ['FY26 Q1', 'FY26 Q2', 'FY26 Q3', 'FY26 Q4'];
+    const indigoColor = 'rgb(79, 70, 229)';  // indigo-600
+    const tealColor = 'rgb(13, 148, 136)'; // teal-600
+    const slateColor = 'rgb(100, 116, 139)'; // slate-500
+    const gridColor = 'rgba(203, 213, 225, 0.5)'; // slate-300 @ 50%
+    const orangeColor = 'rgb(249, 115, 22)'; // orange-500
+    const cyanColor = 'rgb(6, 182, 212)'; // cyan-500
+    const limeColor = 'rgb(132, 204, 22)'; // lime-500
+    const roseColor = 'rgb(225, 29, 72)'; // rose-600
+
+    const defaultChartOptions = {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { // Enable hover interactions
+          mode: 'index',
+          intersect: false,
+      },
+      scales: {
+        x: {
+            grid: {
+              display: false // Hide vertical grid lines
+            },
+            ticks: {
+              color: slateColor
+            }
+        },
+        y: {
+          beginAtZero: true,
+          grid: {
+            color: gridColor,
+            borderDash: [2, 4], // Dashed grid lines
+            drawBorder: false, // Hide Y axis line itself
+          },
+          ticks: {
+            color: slateColor,
+            // Optional: Add callback for formatting large numbers (e.g., '1.2M')
+             callback: function(value, index, values) {
+                if (value >= 1000000) return (value / 1000000) + 'M';
+                if (value >= 1000) return (value / 1000) + 'k';
+                return value;
+            }
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          labels: {
+            color: slateColor, // Legend text color
+            boxWidth: 12, // Smaller legend color boxes
+            padding: 20,
+            usePointStyle: true, // Use the point style (which includes line dashes) for the legend key
+            pointStyle: 'line', // Specifically use 'line' style
+            // Ensure these properties are set to force rectangular legend keys
+            // usePointStyle: false, // These might not be enough for dashed lines
+            // pointStyle: 'rect' 
+
+            // Custom label generation to force rect for all, especially targets
+            /* generateLabels: function(chart) {
+                const originalLabels = Chart.defaults.plugins.legend.labels.generateLabels(chart);
+                originalLabels.forEach(label => {
+                    // Force rectangle style for all items
+                    label.pointStyle = 'rect'; 
+                    label.rotation = 0; // Ensure no rotation
+                    // Optional: Ensure fillStyle is consistent if needed
+                    // label.fillStyle = chart.data.datasets[label.datasetIndex].borderColor; 
+                });
+                return originalLabels;
+            } */
+          }
+        },
+        tooltip: {
+           backgroundColor: 'rgba(0, 0, 0, 0.7)',
+           titleFont: { weight: 'bold' },
+           bodyFont: { size: 12 },
+           padding: 10,
+           cornerRadius: 4,
+           displayColors: true, // Show color boxes in tooltip
+           boxPadding: 4
+        }
+      },
+      elements: {
+          point: {
+              radius: 3, // Point size
+              hoverRadius: 5, // Point size on hover
+              backgroundColor: 'white', // Point fill
+              borderWidth: 2,
+              hoverBorderWidth: 2
+          },
+          line: {
+            tension: 0.3 // Slightly smooth lines
+          }
+      }
+    };
+
+    // Deep merge function (simple version)
+    function mergeOptions(defaults, specifics) {
+        let merged = JSON.parse(JSON.stringify(defaults)); // Deep clone
+        for (let key in specifics) {
+            if (specifics.hasOwnProperty(key)) {
+                if (typeof specifics[key] === 'object' && specifics[key] !== null && !Array.isArray(specifics[key])) {
+                    merged[key] = mergeOptions(merged[key] || {}, specifics[key]);
+                } else {
+                    merged[key] = specifics[key];
+                }
+            }
+        }
+        return merged;
+    }
+
+    // --- Broadcast Reach Chart --- 
+    const broadcastCtx = document.getElementById('broadcastReachChart').getContext('2d');
+    new Chart(broadcastCtx, {
+      type: 'line',
+      data: {
+        labels: quarterlyLabels,
+        datasets: [
+          {
+            label: 'TV CUME', 
+            data: [1200000, 1300000, 1250000, 1400000],
+            borderColor: indigoColor,
+            pointBorderColor: indigoColor
+          },
+          {
+            label: 'Radio CUME',
+            data: [800000, 850000, 820000, 880000],
+            borderColor: tealColor,
+            pointBorderColor: tealColor
+          },
+          // --- Target Lines Updated ---
+          {
+            label: 'TV CUME Target',
+            data: [1250000, 1300000, 1350000, 1400000],
+            borderColor: 'rgba(79, 70, 229, 0.5)', // Lighter indigo
+            borderDash: [5, 5], // Dashed line
+            pointStyle: false, // No points for target line
+            fill: false
+          },
+           {
+            label: 'Radio CUME Target',
+            data: [820000, 840000, 860000, 880000],
+            borderColor: 'rgba(13, 148, 136, 0.5)', // Lighter teal
+            borderDash: [5, 5],
+            pointStyle: false,
+            fill: false
+          }
+        ]
+      },
+      options: defaultChartOptions // Apply default styling
+    });
+
+    // --- Digital Engagement Chart --- 
+    const digitalCtx = document.getElementById('digitalEngagementChart').getContext('2d');
+    new Chart(digitalCtx, {
+      type: 'line',
+      data: {
+        labels: quarterlyLabels,
+        datasets: [
+          {
+            label: 'Returning Visitors',
+            data: [50000, 55000, 60000, 62000],
+            borderColor: indigoColor,
+            pointBorderColor: indigoColor
+          },
+          // --- Target Line Added ---
+           {
+            label: 'Visitors Target',
+            data: [52000, 56000, 60000, 64000], 
+            borderColor: 'rgba(79, 70, 229, 0.5)', // Lighter indigo
+            borderDash: [5, 5], 
+            pointStyle: false,
+            fill: false
+          }
+        ]
+      },
+       options: defaultChartOptions
+    });
+
+    // --- Platform Time Spent Chart --- (NEW - Replaces Streaming)
+    const platformCtx = document.getElementById('platformTimeSpentChart').getContext('2d');
+    new Chart(platformCtx, {
+      type: 'line',
+      data: {
+        labels: quarterlyLabels,
+        datasets: [
+          {
+            label: 'DirectTV Time Spent (Hrs)',
+            data: [8000, 8500, 8200, 9000], // Sample Data
+            borderColor: indigoColor,
+            pointBorderColor: indigoColor
+          },
+          {
+            label: 'Hulu Time Spent (Hrs)',
+            data: [7000, 7200, 7500, 7800], // Sample Data
+            borderColor: tealColor,
+            pointBorderColor: tealColor
+          },
+          {
+            label: 'Prime Time Spent (Hrs)',
+            data: [6000, 6500, 6300, 6800], // Sample Data
+            borderColor: orangeColor, // New color
+            pointBorderColor: orangeColor
+          },
+          {
+            label: 'YouTubeTV Time Spent (Hrs)',
+            data: [4000, 4200, 4100, 4500], // Sample Data
+            borderColor: cyanColor, // New color
+            pointBorderColor: cyanColor
+          },
+          // --- Target Lines Added ---
+           {
+            label: 'DirectTV Target',
+            data: [8200, 8600, 8500, 9200],
+            borderColor: 'rgba(79, 70, 229, 0.5)',
+            borderDash: [5, 5], pointStyle: false, fill: false
+          },
+           {
+            label: 'Hulu Target',
+            data: [7100, 7300, 7600, 8000],
+            borderColor: 'rgba(13, 148, 136, 0.5)',
+            borderDash: [5, 5], pointStyle: false, fill: false
+          },
+           {
+            label: 'Prime Target',
+            data: [6100, 6600, 6500, 7000],
+            borderColor: 'rgba(249, 115, 22, 0.5)',
+            borderDash: [5, 5], pointStyle: false, fill: false
+          },
+           {
+            label: 'YouTubeTV Target',
+            data: [4100, 4300, 4200, 4600],
+            borderColor: 'rgba(6, 182, 212, 0.5)',
+            borderDash: [5, 5], pointStyle: false, fill: false
+          },
+          {
+            label: 'Total Time Spent (Hrs)',
+            data: [25000, 28000, 27000, 28100],
+            borderColor: slateColor,
+            pointBorderColor: slateColor,
+            borderWidth: 3
+          }
+        ]
+      },
+       options: defaultChartOptions
+    });
+
+    // --- Social Impact Chart --- 
+    const socialCtx = document.getElementById('socialImpactChart').getContext('2d');
+    new Chart(socialCtx, {
+      type: 'line',
+      data: {
+        labels: quarterlyLabels,
+        datasets: [
+          {
+            label: 'Organic Engagement',
+            data: [5000, 5500, 5200, 6000],
+            borderColor: indigoColor,
+            pointBorderColor: indigoColor
+          },
+          {
+            label: 'Organic Reach',
+            data: [500000, 520000, 510000, 550000],
+            borderColor: tealColor,
+            pointBorderColor: tealColor
+          },
+           // --- Target Lines Added ---
+          {
+            label: 'Engagement Target',
+            data: [5100, 5400, 5700, 6000], 
+            borderColor: 'rgba(79, 70, 229, 0.5)',
+            borderDash: [5, 5],
+            pointStyle: false,
+            fill: false
+          },
+           {
+            label: 'Reach Target',
+            data: [510000, 525000, 540000, 555000],
+            borderColor: 'rgba(13, 148, 136, 0.5)', 
+            borderDash: [5, 5],
+            pointStyle: false,
+            fill: false
+          },
+          {
+            label: 'Engagement Rate',
+            data: [0.01, 0.01057, 0.01019, 0.0109],
+            borderColor: roseColor,
+            pointBorderColor: roseColor,
+            yAxisID: 'y1'
+          }
+        ]
+      },
+       options: mergeOptions(defaultChartOptions, {
+         scales: {
+            y: {
+              type: 'linear',
+              display: true,
+              position: 'left',
+            },
+            y1: {
+              type: 'linear',
+              display: true,
+              position: 'right',
+              grid: {
+                drawOnChartArea: false,
+              },
+              ticks: {
+                  color: slateColor,
+                  callback: function(value) {
+                     return (value * 100).toFixed(1) + '%';
+                  }
+              }
+            }
+         }
+      })
+    });
+
+    // --- Listeners & Views Chart --- (NEW)
+    const listenersViewsCtx = document.getElementById('listenersViewsChart').getContext('2d');
+    new Chart(listenersViewsCtx, {
+      type: 'line',
+      data: {
+        labels: quarterlyLabels,
+        datasets: [
+          {
+            label: 'P1 Listeners',
+            data: [45000, 48000, 46000, 50000], // Sample Data
+            borderColor: limeColor, // New color
+            pointBorderColor: limeColor
+          },
+          {
+            label: 'Livestream Views', // Reused data from old Streaming chart
+            data: [15000, 18000, 16000, 20000],
+            borderColor: roseColor, // New color
+            pointBorderColor: roseColor
+          },
+           // --- Target Lines Added ---
+          {
+            label: 'P1 Listeners Target',
+            data: [46000, 49000, 48000, 51000],
+            borderColor: 'rgba(132, 204, 22, 0.5)',
+            borderDash: [5, 5], pointStyle: false, fill: false
+          },
+           {
+            label: 'Views Target',
+            data: [16000, 17000, 18000, 19000], // Reused target data
+            borderColor: 'rgba(225, 29, 72, 0.5)',
+            borderDash: [5, 5], pointStyle: false, fill: false
+          }
+        ]
+      },
+       options: defaultChartOptions
+    });
+
+    // --- Toggle Data Table --- 
+    const toggleBtn = document.getElementById('toggleTableBtn');
+    const toggleIcon = document.getElementById('toggleTableIcon');
+    const tableSection = document.getElementById('dataTableSection');
+    const btnText = toggleBtn.querySelector('span');
+
+    toggleBtn.addEventListener('click', () => {
+        const isHidden = tableSection.classList.toggle('hidden');
+        if (isHidden) {
+            btnText.textContent = 'Show Data & Measurement Details';
+            toggleIcon.classList.remove('rotate-180');
+        } else {
+            btnText.textContent = 'Hide Data & Measurement Details';
+            toggleIcon.classList.add('rotate-180');
+        }
+    });
+
+  </script>
+
+</body>
+</html> 
