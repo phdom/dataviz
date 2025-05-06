@@ -5,9 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RIPM Dashboard · Community Interest</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Add Inter font for better typography -->
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <!-- Add Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
+    /* Set Inter as the default font */
+    html { font-family: 'Inter', sans-serif; }
+    @supports (font-variation-settings: normal) {
+      html { font-family: 'Inter var', sans-serif; }
+    }
+
     #header-placeholder {
       min-height: 60px; /* Reserve space for header */
+    }
+
+    /* Add transitions and hover effects to cards */
+    .card-hover-effect {
+      transition: all 0.2s ease-in-out;
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+    
+    .card-hover-effect:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px -4px rgba(148, 163, 184, 0.15);
+      border-color: rgba(99, 102, 241, 0.1);
+    }
+
+    /* Improve metric value typography */
+    .metric-value {
+      font-feature-settings: "tnum";
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.02em;
+    }
+
+    /* Add subtle gradient to the header card */
+    .header-card {
+      background: linear-gradient(135deg, #EEF2FF 0%, #ffffff 100%);
     }
   </style>
 </head>
@@ -30,7 +65,7 @@
       
         <div>
           <h3 class="px-3 text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">Community Presence</h3>
-          <a href="community_interest.html" class="block pl-6 pr-3 py-2 rounded hover:bg-slate-100 font-medium text-indigo-600">Community Interest</a>
+          <a href="community_interest.html" class="block pl-6 pr-3 py-2 rounded bg-indigo-50 text-indigo-700 font-medium">Community Interest</a>
           <a href="news_content_output.html" class="block pl-6 pr-3 py-2 rounded hover:bg-slate-100">News Content Output</a>
           <a href="sponsors_value.html" class="block pl-6 pr-3 py-2 rounded hover:bg-slate-100">Sponsor Value</a>
         </div>
@@ -48,12 +83,641 @@
         </div>
       </nav>
     </aside>
+
+    <!-- ===== Main ===== -->
     <main class="flex-1 p-6 space-y-10">
-        <h2 class="text-2xl font-semibold">Measure: Community Interest Indicators</h2>
-        <p>Placeholder content.</p>
+      <!-- ==== Definition card ==== -->
+      <section class="header-card shadow rounded-xl p-6 border-l-4 border-indigo-500 relative">
+        <h2 class="text-xl font-semibold">Measure: Community Interest Indicators</h2>
+        <span class="absolute top-6 right-6 group cursor-help" aria-label="Metric rules apply to the fiscal year.">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-400 group-hover:text-indigo-600 transition" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10c0 4.418-3.582 8-8 8s-8-3.582-8-8 3.582-8 8-8 8 3.582 8 8zm-8-4a1 1 0 110-2 1 1 0 010 2zm1 11V9H9v8h2z" clip-rule="evenodd"/></svg>
+        </span>
+        <p class="text-sm leading-relaxed mt-2">This measure focuses on our relevance to our community and its increased interest in our products and services. We track unique visitors, listeners, and viewers, as well as social media followers, newsletter subscribers, and event attendees. Additionally, we monitor search traffic and direct traffic to assess how the community finds and engages with us.</p>
+      </section>
+
+      <!-- ==== KPI Scorecards ==== -->
+      <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Scorecard 1: Unique Visitors -->
+          <div class="card-hover-effect shadow rounded-xl p-5 relative">
+              <h4 class="text-sm text-slate-500 font-medium">Unique Visitors</h4>
+              <p class="metric-value text-3xl font-semibold text-slate-800 mt-1">450k</p> 
+              <p class="text-xs mt-1 flex items-center text-green-600 font-medium">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-0.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" /></svg>
+                  +5.8% QoQ
+              </p>
+              <!-- Users Icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="absolute bottom-3 right-3 h-12 w-12 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+              </svg>
+          </div>
+          <!-- Scorecard 2: Broadcast CUME -->
+           <div class="card-hover-effect shadow rounded-xl p-5 relative">
+              <h4 class="text-sm text-slate-500 font-medium">Broadcast CUME</h4>
+              <p class="metric-value text-3xl font-semibold text-slate-800 mt-1">1.85M</p> 
+              <p class="text-xs mt-1 flex items-center text-green-600 font-medium">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-0.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" /></svg>
+                  +3.0% QoQ
+              </p>
+              <!-- Radio Tower Icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="absolute bottom-3 right-3 h-12 w-12 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5.636 18.364a9 9 0 010-12.728m12.728 0a9 9 0 010 12.728m-9.9-2.829a5 5 0 010-7.07m7.072 0a5 5 0 010 7.07M13 12a1 1 0 11-2 0 1 1 0 012 0z" />
+              </svg>
+          </div>
+           <!-- Scorecard 3: Social Followers - Updated to split Meta -->
+           <div class="card-hover-effect shadow rounded-xl p-5 relative">
+              <h4 class="text-sm text-slate-500 font-medium">Meta & X Followers</h4>
+              <p class="metric-value text-3xl font-semibold text-slate-800 mt-1">67k</p>
+              <p class="text-xs mt-1 flex items-center text-green-600 font-medium">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-0.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" /></svg>
+                  +3.2% QoQ
+              </p>
+              <!-- Social Media Icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="absolute bottom-3 right-3 h-12 w-12 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+              </svg>
+          </div>
+           <!-- Scorecard 4: Newsletter Subscribers -->
+           <div class="card-hover-effect shadow rounded-xl p-5 relative">
+              <h4 class="text-sm text-slate-500 font-medium">Newsletter Subscribers</h4>
+              <p class="metric-value text-3xl font-semibold text-slate-800 mt-1">45k</p> 
+              <p class="text-xs mt-1 flex items-center text-green-600 font-medium">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-0.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd" /></svg>
+                  +4.7% QoQ
+              </p>
+              <!-- Email Icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="absolute bottom-3 right-3 h-12 w-12 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+          </div>
+      </section>
+
+      <!-- ==== Integrated Trend Chart Sections ==== -->
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <!-- Unique Visitors Card -->
+          <div class="card-hover-effect shadow rounded-xl p-6">
+              <h3 class="text-lg font-medium text-gray-700 mb-3">Unique Visitors</h3>
+              <p class="text-sm text-gray-500 mb-3">Website visitors (GA4)</p>
+              <div class="chart-container h-64 relative">
+                 <canvas id="uniqueVisitorsChart"></canvas>
+              </div>
+          </div>
+
+          <!-- Broadcast Audience Card -->
+          <div class="card-hover-effect shadow rounded-xl p-6">
+              <h3 class="text-lg font-medium text-gray-700 mb-3">Broadcast Audience</h3>
+              <p class="text-sm text-gray-500 mb-3">TV & Radio (Comscore, Nielsen)</p>
+               <div class="chart-container h-64 relative">
+                  <canvas id="broadcastAudienceChart"></canvas>
+               </div>
+          </div>
+
+          <!-- Social Media Card - Updated to remove YouTube -->
+          <div class="card-hover-effect shadow rounded-xl p-6">
+              <h3 class="text-lg font-medium text-gray-700 mb-3">Social Media Followers</h3>
+              <p class="text-sm text-gray-500 mb-3">Facebook (Followers & Page Likes), Instagram, X</p>
+              <div class="chart-container h-64 relative">
+                  <canvas id="socialMediaChart"></canvas>
+              </div>
+          </div>
+
+          <!-- YouTube Subscribers Card - New separate card -->
+          <div class="card-hover-effect shadow rounded-xl p-6">
+              <h3 class="text-lg font-medium text-gray-700 mb-3">YouTube Subscribers</h3>
+              <p class="text-sm text-gray-500 mb-3">YouTube</p>
+              <div class="chart-container h-64 relative">
+                  <canvas id="youtubeSubscribersChart"></canvas>
+              </div>
+          </div>
+
+          <!-- Traffic Sources Card -->
+          <div class="card-hover-effect shadow rounded-xl p-6">
+              <h3 class="text-lg font-medium text-gray-700 mb-3">Traffic Sources</h3>
+              <p class="text-sm text-gray-500 mb-3">Search & Direct Traffic (GA4)</p>
+              <div class="chart-container h-64 relative">
+                  <canvas id="trafficSourcesChart"></canvas>
+              </div>
+          </div>
+
+          <!-- Community Engagement Card -->
+          <div class="card-hover-effect shadow rounded-xl p-6">
+              <h3 class="text-lg font-medium text-gray-700 mb-3">Community Engagement</h3>
+              <p class="text-sm text-gray-500 mb-3">Newsletter Subscribers & Event Attendees</p>
+              <div class="chart-container h-64 relative">
+                  <canvas id="communityEngagementChart"></canvas>
+              </div>
+          </div>
+
+          <!-- Sponsors Value Card - New card from screenshot -->
+          <div class="card-hover-effect shadow rounded-xl p-6">
+              <h3 class="text-lg font-medium text-gray-700 mb-3">Sponsors Recognize the Value of RIPM</h3>
+              <p class="text-sm text-gray-500 mb-3">Underwriting asks and active underwriters</p>
+              <div class="chart-container h-64 relative">
+                  <canvas id="sponsorsValueChart"></canvas>
+              </div>
+          </div>
+
+      </section>
+
+      <!-- ==== Data table (Collapsible) ==== -->
+      <section class="card-hover-effect shadow rounded-xl p-4">
+        <button id="toggleTableBtn" class="w-full flex justify-between items-center text-slate-700 text-sm font-medium transition hover:text-indigo-600">
+          <span>Show Data & Measurement Details</span>
+          <svg id="toggleTableIcon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div id="dataTableSection" class="hidden mt-4 pt-4 border-t border-slate-200 overflow-x-auto">
+          <h3 class="text-base font-medium mb-4">Data & Measurement Details</h3>
+          <table class="min-w-max w-full text-sm border-collapse">
+            <thead class="bg-slate-100 text-left whitespace-nowrap">
+              <tr>
+                <th class="px-4 py-2 font-semibold">Metric</th>
+                <th class="px-4 py-2 font-semibold">Data Source</th>
+                <th class="px-4 py-2 font-semibold">Ingestion Method</th>
+                <th class="px-4 py-2 font-semibold">Reporting Frequency</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr>
+                <td class="px-4 py-3 sticky left-0 bg-white font-medium">Unique Visitors</td>
+                <td class="px-4 py-3">GA4</td>
+                <td class="px-4 py-3">Platform</td>
+                <td class="px-4 py-3">Quarterly</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 sticky left-0 bg-white font-medium">Unique Listeners</td>
+                <td class="px-4 py-3">Nielsen</td>
+                <td class="px-4 py-3">Vendor Report</td>
+                <td class="px-4 py-3">Quarterly</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 sticky left-0 bg-white font-medium">Unique Viewers</td>
+                <td class="px-4 py-3">Comscore, Nielsen</td>
+                <td class="px-4 py-3">Vendor Report</td>
+                <td class="px-4 py-3">Quarterly</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 sticky left-0 bg-white font-medium">Facebook Followers</td>
+                <td class="px-4 py-3">Meta</td>
+                <td class="px-4 py-3">Platform Insights</td>
+                <td class="px-4 py-3">Quarterly</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 sticky left-0 bg-white font-medium">Facebook Page Likes</td>
+                <td class="px-4 py-3">Meta</td>
+                <td class="px-4 py-3">Platform Insights</td>
+                <td class="px-4 py-3">Quarterly</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 sticky left-0 bg-white font-medium">Instagram Followers</td>
+                <td class="px-4 py-3">Meta</td>
+                <td class="px-4 py-3">Platform Insights</td>
+                <td class="px-4 py-3">Quarterly</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 sticky left-0 bg-white font-medium">Social Media Followers (X)</td>
+                <td class="px-4 py-3">X</td>
+                <td class="px-4 py-3">Platform Insights</td>
+                <td class="px-4 py-3">Quarterly</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 sticky left-0 bg-white font-medium">YouTube Subscribers</td>
+                <td class="px-4 py-3">YouTube</td>
+                <td class="px-4 py-3">Platform Insights</td>
+                <td class="px-4 py-3">Quarterly</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 sticky left-0 bg-white font-medium">Newsletter Subscribers</td>
+                <td class="px-4 py-3">GetResponse, Constant Contact</td>
+                <td class="px-4 py-3">Vendor Report</td>
+                <td class="px-4 py-3">Quarterly</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 sticky left-0 bg-white font-medium">Event Attendees</td>
+                <td class="px-4 py-3">Google Forms, Eventbrite</td>
+                <td class="px-4 py-3">Manual Import</td>
+                <td class="px-4 py-3">Quarterly</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 sticky left-0 bg-white font-medium">Search Traffic</td>
+                <td class="px-4 py-3">GA4</td>
+                <td class="px-4 py-3">Platform</td>
+                <td class="px-4 py-3">Quarterly</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 sticky left-0 bg-white font-medium">Direct Traffic</td>
+                <td class="px-4 py-3">GA4</td>
+                <td class="px-4 py-3">Platform</td>
+                <td class="px-4 py-3">Quarterly</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 sticky left-0 bg-white font-medium">Monthly Underwriting Asks</td>
+                <td class="px-4 py-3">Sponsorship CRM</td>
+                <td class="px-4 py-3">Sales Team Report</td>
+                <td class="px-4 py-3">Quarterly</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-3 sticky left-0 bg-white font-medium">Number of Active Underwriters</td>
+                <td class="px-4 py-3">Sponsorship CRM</td>
+                <td class="px-4 py-3">Sales Team Report</td>
+                <td class="px-4 py-3">Quarterly</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </main>
   </div>
 
+  <script>
+    const quarterlyLabels = ['FY26 Q1', 'FY26 Q2', 'FY26 Q3', 'FY26 Q4'];
+    const indigoColor = 'rgb(79, 70, 229)';  // indigo-600
+    const tealColor = 'rgb(13, 148, 136)'; // teal-600
+    const slateColor = 'rgb(100, 116, 139)'; // slate-500
+    const gridColor = 'rgba(203, 213, 225, 0.5)'; // slate-300 @ 50%
+    const orangeColor = 'rgb(249, 115, 22)'; // orange-500
+    const cyanColor = 'rgb(6, 182, 212)'; // cyan-500
+    const limeColor = 'rgb(132, 204, 22)'; // lime-500
+    const roseColor = 'rgb(225, 29, 72)'; // rose-600
+
+    const defaultChartOptions = {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { // Enable hover interactions
+          mode: 'index',
+          intersect: false,
+      },
+      scales: {
+        x: {
+            grid: {
+              display: false // Hide vertical grid lines
+            },
+            ticks: {
+              color: slateColor
+            }
+        },
+        y: {
+          beginAtZero: true,
+          grid: {
+            color: gridColor,
+            borderDash: [2, 4], // Dashed grid lines
+            drawBorder: false, // Hide Y axis line itself
+          },
+          ticks: {
+            color: slateColor,
+            // Optional: Add callback for formatting large numbers (e.g., '1.2M')
+             callback: function(value, index, values) {
+                if (value >= 1000000) return (value / 1000000) + 'M';
+                if (value >= 1000) return (value / 1000) + 'k';
+                return value;
+            }
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          labels: {
+            color: slateColor, // Legend text color
+            boxWidth: 12, // Smaller legend color boxes
+            padding: 20,
+            usePointStyle: true, // Use the point style for the legend key
+            pointStyle: 'line'
+          }
+        },
+        tooltip: {
+           backgroundColor: 'rgba(0, 0, 0, 0.7)',
+           titleFont: { weight: 'bold' },
+           bodyFont: { size: 12 },
+           padding: 10,
+           cornerRadius: 4,
+           displayColors: true, // Show color boxes in tooltip
+           boxPadding: 4
+        }
+      },
+      elements: {
+          point: {
+              radius: 3, // Point size
+              hoverRadius: 5, // Point size on hover
+              backgroundColor: 'white', // Point fill
+              borderWidth: 2,
+              hoverBorderWidth: 2
+          },
+          line: {
+            tension: 0.3 // Slightly smooth lines
+          }
+      }
+    };
+
+    // Deep merge function (simple version)
+    function mergeOptions(defaults, specifics) {
+        let merged = JSON.parse(JSON.stringify(defaults)); // Deep clone
+        for (let key in specifics) {
+            if (specifics.hasOwnProperty(key)) {
+                if (typeof specifics[key] === 'object' && specifics[key] !== null && !Array.isArray(specifics[key])) {
+                    merged[key] = mergeOptions(merged[key] || {}, specifics[key]);
+                } else {
+                    merged[key] = specifics[key];
+                }
+            }
+        }
+        return merged;
+    }
+
+    // --- Unique Visitors Chart --- 
+    const uniqueVisitorsCtx = document.getElementById('uniqueVisitorsChart').getContext('2d');
+    new Chart(uniqueVisitorsCtx, {
+      type: 'line',
+      data: {
+        labels: quarterlyLabels,
+        datasets: [
+          {
+            label: 'Unique Visitors', 
+            data: [420000, 435000, 445000, 450000],
+            borderColor: indigoColor,
+            pointBorderColor: indigoColor
+          },
+          // --- Target Line ---
+          {
+            label: 'Visitors Target',
+            data: [425000, 440000, 455000, 470000],
+            borderColor: 'rgba(79, 70, 229, 0.5)', // Lighter indigo
+            borderDash: [5, 5], // Dashed line
+            pointStyle: false, // No points for target line
+            fill: false
+          }
+        ]
+      },
+      options: defaultChartOptions // Apply default styling
+    });
+
+    // --- Broadcast Audience Chart --- 
+    const broadcastCtx = document.getElementById('broadcastAudienceChart').getContext('2d');
+    new Chart(broadcastCtx, {
+      type: 'line',
+      data: {
+        labels: quarterlyLabels,
+        datasets: [
+          {
+            label: 'TV Viewers', 
+            data: [1200000, 1230000, 1250000, 1280000],
+            borderColor: indigoColor,
+            pointBorderColor: indigoColor
+          },
+          {
+            label: 'Radio Listeners',
+            data: [550000, 560000, 570000, 570000],
+            borderColor: tealColor,
+            pointBorderColor: tealColor
+          },
+          // --- Target Lines ---
+          {
+            label: 'TV Target',
+            data: [1220000, 1250000, 1280000, 1300000],
+            borderColor: 'rgba(79, 70, 229, 0.5)', // Lighter indigo
+            borderDash: [5, 5], // Dashed line
+            pointStyle: false, // No points for target line
+            fill: false
+          },
+           {
+            label: 'Radio Target',
+            data: [560000, 570000, 580000, 590000],
+            borderColor: 'rgba(13, 148, 136, 0.5)', // Lighter teal
+            borderDash: [5, 5],
+            pointStyle: false,
+            fill: false
+          }
+        ]
+      },
+      options: defaultChartOptions // Apply default styling
+    });
+
+    // --- Social Media Chart --- 
+    const socialCtx = document.getElementById('socialMediaChart').getContext('2d');
+    new Chart(socialCtx, {
+      type: 'line',
+      data: {
+        labels: quarterlyLabels,
+        datasets: [
+          {
+            label: 'Facebook Followers',
+            data: [25000, 26000, 26500, 27000],
+            borderColor: indigoColor,
+            pointBorderColor: indigoColor
+          },
+          {
+            label: 'Facebook Page Likes',
+            data: [8000, 8500, 8700, 9000],
+            borderColor: cyanColor,
+            pointBorderColor: cyanColor
+          },
+          {
+            label: 'Instagram Followers', 
+            data: [12000, 12500, 13000, 13000],
+            borderColor: roseColor,
+            pointBorderColor: roseColor
+          },
+          {
+            label: 'X Followers', 
+            data: [15000, 16000, 17000, 18000],
+            borderColor: tealColor,
+            pointBorderColor: tealColor
+          },
+          // --- Target Lines ---
+          {
+            label: 'Facebook Followers Target',
+            data: [25500, 26500, 27500, 28500],
+            borderColor: 'rgba(79, 70, 229, 0.5)',
+            borderDash: [5, 5], pointStyle: false, fill: false
+          },
+          {
+            label: 'Facebook Likes Target',
+            data: [8200, 8700, 9000, 9300],
+            borderColor: 'rgba(6, 182, 212, 0.5)', 
+            borderDash: [5, 5], pointStyle: false, fill: false
+          },
+          {
+            label: 'Instagram Target',
+            data: [12200, 12700, 13200, 13700],
+            borderColor: 'rgba(225, 29, 72, 0.5)',
+            borderDash: [5, 5], pointStyle: false, fill: false
+          },
+          {
+            label: 'X Target',
+            data: [15500, 16500, 17500, 18500],
+            borderColor: 'rgba(13, 148, 136, 0.5)',
+            borderDash: [5, 5], pointStyle: false, fill: false
+          },
+          {
+            label: 'Total Social Followers',
+            data: [60000, 63000, 65000, 67000],
+            borderColor: slateColor,
+            pointBorderColor: slateColor,
+            borderWidth: 3
+          }
+        ]
+      },
+       options: defaultChartOptions
+    });
+
+    // --- YouTube Subscribers Chart --- 
+    const youtubeCtx = document.getElementById('youtubeSubscribersChart').getContext('2d');
+    new Chart(youtubeCtx, {
+      type: 'line',
+      data: {
+        labels: quarterlyLabels,
+        datasets: [
+          {
+            label: 'YouTube Subscribers',
+            data: [16000, 17000, 17500, 18000],
+            borderColor: orangeColor,
+            pointBorderColor: orangeColor
+          },
+          // --- Target Line ---
+          {
+            label: 'YouTube Target',
+            data: [16500, 17500, 18500, 19500],
+            borderColor: 'rgba(249, 115, 22, 0.5)',
+            borderDash: [5, 5], pointStyle: false, fill: false
+          }
+        ]
+      },
+       options: defaultChartOptions
+    });
+
+    // --- Traffic Sources Chart --- 
+    const trafficCtx = document.getElementById('trafficSourcesChart').getContext('2d');
+    new Chart(trafficCtx, {
+      type: 'line',
+      data: {
+        labels: quarterlyLabels,
+        datasets: [
+          {
+            label: 'Search Traffic',
+            data: [180000, 185000, 190000, 195000],
+            borderColor: indigoColor,
+            pointBorderColor: indigoColor
+          },
+          {
+            label: 'Direct Traffic',
+            data: [90000, 92000, 95000, 97000],
+            borderColor: tealColor,
+            pointBorderColor: tealColor
+          },
+           // --- Target Lines ---
+          {
+            label: 'Search Target',
+            data: [182000, 187000, 192000, 197000], 
+            borderColor: 'rgba(79, 70, 229, 0.5)',
+            borderDash: [5, 5],
+            pointStyle: false,
+            fill: false
+          },
+           {
+            label: 'Direct Target',
+            data: [91000, 94000, 97000, 100000],
+            borderColor: 'rgba(13, 148, 136, 0.5)', 
+            borderDash: [5, 5],
+            pointStyle: false,
+            fill: false
+          }
+        ]
+      },
+       options: defaultChartOptions
+    });
+
+    // --- Community Engagement Chart --- 
+    const engagementCtx = document.getElementById('communityEngagementChart').getContext('2d');
+    new Chart(engagementCtx, {
+      type: 'line',
+      data: {
+        labels: quarterlyLabels,
+        datasets: [
+          {
+            label: 'Newsletter Subscribers',
+            data: [40000, 42000, 44000, 45000],
+            borderColor: indigoColor,
+            pointBorderColor: indigoColor
+          },
+          {
+            label: 'Event Attendees',
+            data: [2000, 2200, 2300, 2400],
+            borderColor: tealColor,
+            pointBorderColor: tealColor
+          },
+           // --- Target Lines ---
+          {
+            label: 'Newsletter Target',
+            data: [41000, 43000, 45000, 47000],
+            borderColor: 'rgba(79, 70, 229, 0.5)',
+            borderDash: [5, 5], pointStyle: false, fill: false
+          },
+           {
+            label: 'Events Target',
+            data: [2100, 2250, 2400, 2550],
+            borderColor: 'rgba(13, 148, 136, 0.5)',
+            borderDash: [5, 5], pointStyle: false, fill: false
+          }
+        ]
+      },
+       options: defaultChartOptions
+    });
+
+    // --- Sponsors Value Chart --- 
+    const sponsorsCtx = document.getElementById('sponsorsValueChart').getContext('2d');
+    new Chart(sponsorsCtx, {
+      type: 'line',
+      data: {
+        labels: quarterlyLabels,
+        datasets: [
+          {
+            label: 'Monthly Underwriting Asks',
+            data: [45, 48, 52, 55],
+            borderColor: indigoColor,
+            pointBorderColor: indigoColor
+          },
+          {
+            label: 'Active Underwriters',
+            data: [28, 30, 32, 35],
+            borderColor: tealColor,
+            pointBorderColor: tealColor
+          },
+           // --- Target Lines ---
+          {
+            label: 'Asks Target',
+            data: [46, 50, 54, 58],
+            borderColor: 'rgba(79, 70, 229, 0.5)',
+            borderDash: [5, 5], pointStyle: false, fill: false
+          },
+           {
+            label: 'Underwriters Target',
+            data: [29, 31, 33, 36],
+            borderColor: 'rgba(13, 148, 136, 0.5)',
+            borderDash: [5, 5], pointStyle: false, fill: false
+          }
+        ]
+      },
+       options: defaultChartOptions
+    });
+
+    // --- Toggle Data Table --- 
+    const toggleBtn = document.getElementById('toggleTableBtn');
+    const toggleIcon = document.getElementById('toggleTableIcon');
+    const tableSection = document.getElementById('dataTableSection');
+    const btnText = toggleBtn.querySelector('span');
+
+    toggleBtn.addEventListener('click', () => {
+        const isHidden = tableSection.classList.toggle('hidden');
+        if (isHidden) {
+            btnText.textContent = 'Show Data & Measurement Details';
+            toggleIcon.classList.remove('rotate-180');
+        } else {
+            btnText.textContent = 'Hide Data & Measurement Details';
+            toggleIcon.classList.add('rotate-180');
+        }
+    });
+
+  </script>
   <script>
     // Function to load the header
     function loadHeader() {
