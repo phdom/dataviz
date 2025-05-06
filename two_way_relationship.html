@@ -20,6 +20,24 @@
       min-height: 60px; /* Reserve space for header */
     }
 
+    #sidebar-placeholder {
+      width: 14rem; /* Tailwind w-56 */
+      flex-shrink: 0; /* Prevent shrinking */
+    }
+
+    /* Hide body initially to prevent FOUC */
+    body.loading {
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    /* Style for when body is made visible */
+    body.loaded {
+        visibility: visible;
+        opacity: 1;
+    }
+
     /* Add transitions and hover effects to cards */
     .card-hover-effect {
       transition: all 0.2s ease-in-out;
@@ -121,49 +139,13 @@
     }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans">
+<body class="bg-slate-50 text-slate-900 font-sans loading">
   <!-- ===== Header Placeholder ===== -->
   <div id="header-placeholder"></div>
 
   <div class="lg:flex">
-    <!-- ===== Sidebar ===== -->
-    <aside class="hidden lg:block w-56 border-r bg-white min-h-screen p-4">
-      <nav class="space-y-3 text-sm">
-        <!-- Dashboard Link -->
-        <div>
-          <a href="index.html" class="block px-3 py-2 rounded hover:bg-slate-100">Dashboard Overview</a>
-        </div>
-      
-        <!-- Strategic Result 1 -->
-        <div>
-          <h3 class="px-3 text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">Engaged & Loyal</h3>
-          <a href="two_way_relationship.html" class="block pl-6 pr-3 py-2 rounded bg-indigo-50 text-indigo-700 font-medium">Two-Way Relationship</a>
-          <a href="unknown_ambassadors.html" class="block pl-6 pr-3 py-2 rounded hover:bg-slate-100">Unknown Ambassadors</a>
-        </div>
-      
-        <!-- Strategic Result 2 -->
-        <div>
-          <h3 class="px-3 text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">Community Presence</h3>
-          <a href="community_interest.html" class="block pl-6 pr-3 py-2 rounded hover:bg-slate-100">Community Interest</a>
-          <a href="news_content_output.html" class="block pl-6 pr-3 py-2 rounded hover:bg-slate-100">News Content Output</a>
-          <a href="sponsors_value.html" class="block pl-6 pr-3 py-2 rounded hover:bg-slate-100">Sponsor Value</a>
-        </div>
-      
-        <!-- Strategic Result 3 -->
-         <div>
-          <h3 class="px-3 text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">Financial Resilience</h3>
-          <a href="membership_model.html" class="block pl-6 pr-3 py-2 rounded hover:bg-slate-100">Membership Model</a>
-          <a href="local_revenue.html" class="block pl-6 pr-3 py-2 rounded hover:bg-slate-100">Local Revenue</a>
-          <a href="gross_margin.html" class="block pl-6 pr-3 py-2 rounded hover:bg-slate-100">Gross Margin Rate</a>
-        </div>
-      
-        <!-- Strategic Result 4 -->
-         <div>
-          <h3 class="px-3 text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">Unified Organization</h3>
-          <a href="org_flow.html" class="block pl-6 pr-3 py-2 rounded hover:bg-slate-100">Org Flow & Agility</a>
-        </div>
-      </nav>
-    </aside>
+    <!-- ===== Sidebar Placeholder ===== -->
+    <div id="sidebar-placeholder"></div>
 
     <!-- ===== Main ===== -->
     <main class="flex-1 p-6 space-y-10">
@@ -369,40 +351,147 @@
         });
     }
 
+    // Function to load the sidebar
+    function loadSidebar() {
+      fetch('_sidebar.html')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+          }
+          return response.text();
+        })
+        .then(data => {
+          document.getElementById('sidebar-placeholder').innerHTML = data;
+          // After sidebar is loaded, update header title which might depend on sidebar content
+          updateHeaderTitle(); 
+          // Also, explicitly set the active class for the current page in the loaded sidebar
+          setActiveSidebarLink();
+        })
+        .catch(error => {
+          console.error('Error loading the sidebar:', error);
+          document.getElementById('sidebar-placeholder').innerHTML = '<p class="text-red-500 text-center p-4">Error loading sidebar content.</p>';
+        });
+    }
+    
+    // Function to set the active class on the correct sidebar link
+    function setActiveSidebarLink() {
+        try {
+            const currentPage = window.location.pathname.split('/').pop();
+            if (currentPage) {
+                const activeLink = document.querySelector(`#sidebar-placeholder nav a[href="${currentPage}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('bg-indigo-50', 'text-indigo-700', 'font-medium');
+                    activeLink.classList.remove('hover:bg-slate-100');
+                }
+            }
+        } catch (error) {
+            console.error('Error setting active sidebar link:', error);
+        }
+    }
+
     // Function to update the header title based on the active sidebar link
     function updateHeaderTitle() {
       try {
-        const activeLink = document.querySelector('aside nav a.bg-indigo-50');
-        if (!activeLink) return; // No active link found
+        // Check if sidebar content is loaded before trying to find active link
+        const sidebarNav = document.querySelector('#sidebar-placeholder nav');
+        if (!sidebarNav) {
+          // console.log('Sidebar not loaded yet, updateHeaderTitle will run again after sidebar load.');
+          return; 
+        }
+
+        const activeLink = sidebarNav.querySelector('a.bg-indigo-50');
+        if (!activeLink) {
+            // console.log('No active link found in sidebar for header title update.');
+            return; 
+        }
 
         // Find the closest parent div containing the link
         const parentDiv = activeLink.closest('div');
         if (!parentDiv) return;
 
         // Find the preceding h3 sibling within the same parent container
-        const strategicResultHeading = parentDiv.querySelector('h3.px-3');
-        // If h3 isn't in the same div, look for the previous sibling that contains an h3
+        // This logic might need adjustment if h3 is not a direct sibling's child.
+        let headingElement = null;
         let currentElement = parentDiv;
-        let headingElement = strategicResultHeading;
-        while (!headingElement && currentElement.previousElementSibling) {
-            currentElement = currentElement.previousElementSibling;
-            headingElement = currentElement.querySelector('h3.px-3');
+        // Traverse upwards to find the relevant h3. It's usually in the div directly before the link's div,
+        // or if the link is the first item in its "strategic result" group, the h3 is in its own div.
+        
+        // Check current div for h3 (if link is under its own h3, e.g. "Dashboard Overview")
+        headingElement = parentDiv.querySelector('h3.px-3');
+
+        // If not found, look in previous sibling divs that might contain the h3
+        if (!headingElement) {
+            let prevSibling = parentDiv.previousElementSibling;
+            while (prevSibling) {
+                headingElement = prevSibling.querySelector('h3.px-3');
+                if (headingElement) break;
+                prevSibling = prevSibling.previousElementSibling;
+            }
         }
+        
+        // Fallback for a structure where H3 is within the same div as the link itself (less common for this sidebar)
+        if (!headingElement && parentDiv.contains(activeLink)) {
+             headingElement = parentDiv.querySelector('h3.px-3');
+        }
+
 
         if (headingElement && headingElement.textContent) {
           const headerTitleSpan = document.getElementById('strategic-result-name');
           if (headerTitleSpan) {
-            // Use textContent and trim whitespace
             headerTitleSpan.textContent = headingElement.textContent.trim();
+          } else {
+            // console.log('Header title span not found.');
           }
+        } else {
+            // If no specific h3 is found (e.g. for "Dashboard Overview" which has no preceding h3)
+            // Clear the title or set a default if appropriate.
+            const headerTitleSpan = document.getElementById('strategic-result-name');
+            if (headerTitleSpan && activeLink.textContent.trim() === "Dashboard Overview") {
+                 headerTitleSpan.textContent = "Dashboard Overview"; // Or ""
+            }
+            // console.log('Strategic result heading not found for active link:', activeLink.textContent);
         }
       } catch (error) {
         console.error('Error updating header title:', error);
       }
     }
 
-    // Load the header when the page finishes loading
-    document.addEventListener('DOMContentLoaded', loadHeader);
+    // Load the header and sidebar when the page finishes loading
+    document.addEventListener('DOMContentLoaded', () => {
+        // Use Promise.all to wait for both header and sidebar to load
+        Promise.all([
+            fetch('_header.html').then(response => {
+                if (!response.ok) throw new Error('Header fetch failed');
+                return response.text();
+            }),
+            fetch('_sidebar.html').then(response => {
+                if (!response.ok) throw new Error('Sidebar fetch failed');
+                return response.text();
+            })
+        ])
+        .then(([headerHtml, sidebarHtml]) => {
+            // Both fetches were successful
+            document.getElementById('header-placeholder').innerHTML = headerHtml;
+            document.getElementById('sidebar-placeholder').innerHTML = sidebarHtml;
+            
+            // Now run the dependent functions
+            setActiveSidebarLink();
+            updateHeaderTitle(); 
+            
+            // Make the body visible
+            document.body.classList.remove('loading');
+            document.body.classList.add('loaded');
+        })
+        .catch(error => {
+            console.error('Error loading page components:', error);
+            // Optionally display error messages in placeholders
+            document.getElementById('header-placeholder').innerHTML = '<p class="text-red-500 text-center p-4">Error loading header.</p>';
+            document.getElementById('sidebar-placeholder').innerHTML = '<p class="text-red-500 text-center p-4">Error loading sidebar.</p>';
+            // Make body visible even if components failed to load, so user isn't stuck
+            document.body.classList.remove('loading');
+            document.body.classList.add('loaded'); 
+        });
+    });
 
     // --- Toggle Data Table ---
     const toggleBtn = document.getElementById('toggleTableBtn');
