@@ -7,26 +7,15 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Add Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    #header-placeholder {
+      min-height: 60px; /* Reserve space for header */
+    }
+  </style>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
-  <!-- ===== Header ===== -->
-  <header class="sticky top-0 z-10 bg-white/90 backdrop-blur shadow-sm flex items-center justify-between px-6 py-3">
-    <h1 class="text-lg font-semibold">Strategic Result → <span class="font-bold text-indigo-600">Audiences Are Engaged & Loyal</span></h1>
-    <div class="flex items-center gap-3">
-      <label class="sr-only" for="section">Section</label>
-      <select id="section" class="border rounded px-2 py-1 text-sm lg:hidden">
-        <option selected>Two‑Way Relationship</option>
-        <option>Awareness & Reach</option>
-        <option>Digital Platform Engagement</option>
-      </select>
-      <label class="text-sm mr-1 hidden lg:block" for="fy">FY</label>
-      <select id="fy" class="border rounded px-2 py-1 text-sm">
-        <option>2025</option>
-        <option selected>2026</option>
-        <option>2027</option>
-      </select>
-    </div>
-  </header>
+  <!-- ===== Header Placeholder ===== -->
+  <div id="header-placeholder"></div>
 
   <div class="lg:flex">
     <!-- ===== Sidebar ===== -->
@@ -41,7 +30,7 @@
         <div>
           <h3 class="px-3 text-xs text-slate-500 uppercase tracking-wider font-semibold mb-1">Engaged & Loyal</h3>
           <a href="two_way_relationship.html" class="block pl-6 pr-3 py-2 rounded hover:bg-slate-100">Two-Way Relationship</a>
-          <a href="unknown_ambassadors.html" class="block pl-6 pr-3 py-2 rounded hover:bg-slate-100 font-medium text-indigo-600">Unknown Ambassadors</a>
+          <a href="unknown_ambassadors.html" class="block pl-6 pr-3 py-2 rounded bg-indigo-50 text-indigo-700 font-medium">Unknown Ambassadors</a>
         </div>
       
         <!-- Strategic Result 2 -->
@@ -71,10 +60,10 @@
     <!-- ===== Main ===== -->
     <main class="flex-1 p-6 space-y-10">
       <!-- ==== Definition card ==== -->
-      <section class="bg-white shadow rounded-xl p-6 border-l-4 border-teal-500 relative">
+      <section class="bg-white shadow rounded-xl p-6 border-l-4 border-indigo-500 relative">
         <h2 class="text-xl font-semibold">Measure Two: Unknown Ambassadors</h2>
         <span class="absolute top-6 right-6 group cursor-help" aria-label="Metric rules apply to the fiscal year.">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-400 group-hover:text-teal-600 transition" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10c0 4.418-3.582 8-8 8s-8-3.582-8-8 3.582-8 8-8 8 3.582 8 8zm-8-4a1 1 0 110-2 1 1 0 010 2zm1 11V9H9v8h2z" clip-rule="evenodd"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-400 group-hover:text-indigo-600 transition" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10c0 4.418-3.582 8-8 8s-8-3.582-8-8 3.582-8 8-8 8 3.582 8 8zm-8-4a1 1 0 110-2 1 1 0 010 2zm1 11V9H9v8h2z" clip-rule="evenodd"/></svg>
         </span>
         <p class="text-sm leading-relaxed mt-2">Focuses on understanding and growing the segment of our audience that engages regularly but remains anonymous. These individuals consume content across broadcast, livestreams, digital platforms, and social media without subscribing, registering, or donating. We track behaviors like CUME, returning visitors, P1 listeners, streaming time, and organic social engagement/reach to get a complete picture and design strategies to deepen relationships.</p>
       </section>
@@ -632,6 +621,61 @@
         }
     });
 
+  </script>
+  <script>
+    // Function to load the header
+    function loadHeader() {
+      fetch('_header.html')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+          }
+          return response.text();
+        })
+        .then(data => {
+          document.getElementById('header-placeholder').innerHTML = data;
+          updateHeaderTitle(); // Call the function to update the title
+        })
+        .catch(error => {
+          console.error('Error loading the header:', error);
+          document.getElementById('header-placeholder').innerHTML = '<p class="text-red-500 text-center p-4">Error loading header content.</p>';
+        });
+    }
+
+    // Function to update the header title based on the active sidebar link
+    function updateHeaderTitle() {
+      try {
+        const activeLink = document.querySelector('aside nav a.bg-indigo-50');
+        if (!activeLink) return; // No active link found
+
+        // Find the closest parent div containing the link
+        const parentDiv = activeLink.closest('div');
+        if (!parentDiv) return;
+
+        // Find the preceding h3 sibling within the same parent container
+        const strategicResultHeading = parentDiv.querySelector('h3.px-3');
+        // If h3 isn't in the same div, look for the previous sibling that contains an h3
+        let currentElement = parentDiv;
+        let headingElement = strategicResultHeading;
+        while (!headingElement && currentElement.previousElementSibling) {
+            currentElement = currentElement.previousElementSibling;
+            headingElement = currentElement.querySelector('h3.px-3');
+        }
+
+        if (headingElement && headingElement.textContent) {
+          const headerTitleSpan = document.getElementById('strategic-result-name');
+          if (headerTitleSpan) {
+            // Use textContent and trim whitespace
+            headerTitleSpan.textContent = headingElement.textContent.trim();
+          }
+        }
+      } catch (error) {
+        console.error('Error updating header title:', error);
+      }
+    }
+
+    // Load the header when the page finishes loading
+    document.addEventListener('DOMContentLoaded', loadHeader);
   </script>
 
 </body>

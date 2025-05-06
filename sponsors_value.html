@@ -5,11 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RIPM Dashboard · Sponsors</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    #header-placeholder {
+      min-height: 60px; /* Reserve space for header */
+    }
+  </style>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
-  <header class="sticky top-0 z-10 bg-white/90 backdrop-blur shadow-sm flex items-center justify-between px-6 py-3">
-    <h1 class="text-lg font-semibold">RIPM Strategic Dashboard</h1>
-  </header>
+  <!-- ===== Header Placeholder ===== -->
+  <div id="header-placeholder"></div>
+
   <div class="lg:flex">
     <aside class="hidden lg:block w-56 border-r bg-white min-h-screen p-4">
       <nav class="space-y-3 text-sm">
@@ -53,5 +58,28 @@
         <p>Placeholder content.</p>
     </main>
   </div>
+
+  <script>
+    // Function to load the header
+    function loadHeader() {
+      fetch('_header.html')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+          }
+          return response.text();
+        })
+        .then(data => {
+          document.getElementById('header-placeholder').innerHTML = data;
+        })
+        .catch(error => {
+          console.error('Error loading the header:', error);
+          document.getElementById('header-placeholder').innerHTML = '<p class="text-red-500 text-center p-4">Error loading header content.</p>';
+        });
+    }
+
+    // Load the header when the page finishes loading
+    document.addEventListener('DOMContentLoaded', loadHeader);
+  </script>
 </body>
 </html> 
