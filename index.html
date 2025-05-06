@@ -18,13 +18,26 @@
       left: 0;
       z-index: 10;
     }
-    /* Ensure background color for sticky column */
-    tbody tr td.sticky-col {
-        background-color: white; /* Or the background of your table rows */
-    }
-    tbody tr:nth-child(even) td.sticky-col {
-        background-color: #f8fafc; /* bg-slate-50 for even rows */
-    }
+    /* Ensure background color for sticky column - REMOVED */
+    /* tbody tr td.sticky-col {
+        background-color: inherit; /* Inherit background from parent tr */
+    /* } */
+
+    /* Group-based alternating background colors */
+    .group-tv, .group-streaming, .group-membership, .group-email, .group-events { background-color: white; }
+    .group-radio, .group-digital, .group-social, .group-podcasts { background-color: #f8fafc; /* bg-slate-50 */ }
+
+    /* Sticky column background matches group */
+    .group-tv td.sticky-col, .group-streaming td.sticky-col, .group-membership td.sticky-col, .group-email td.sticky-col, .group-events td.sticky-col { background-color: white; }
+    .group-radio td.sticky-col, .group-digital td.sticky-col, .group-social td.sticky-col, .group-podcasts td.sticky-col { background-color: #f8fafc; /* bg-slate-50 */ }
+
+    /* Hover effects based on group */
+    .group-tv:hover, .group-streaming:hover, .group-membership:hover, .group-email:hover, .group-events:hover { background-color: #f8fafc; /* bg-slate-50 */ }
+    .group-radio:hover, .group-digital:hover, .group-social:hover, .group-podcasts:hover { background-color: #f1f5f9; /* bg-slate-100 */ }
+
+    /* Ensure sticky column hover matches group hover */
+     .group-tv:hover td.sticky-col, .group-streaming:hover td.sticky-col, .group-membership:hover td.sticky-col, .group-email:hover td.sticky-col, .group-events:hover td.sticky-col { background-color: #f8fafc; /* bg-slate-50 */ }
+    .group-radio:hover td.sticky-col, .group-digital:hover td.sticky-col, .group-social:hover td.sticky-col, .group-podcasts:hover td.sticky-col { background-color: #f1f5f9; /* bg-slate-100 */ }
 
   </style>
 </head>
@@ -141,7 +154,7 @@
           </thead>
           <tbody class="divide-y divide-slate-100">
             <!-- TV -->
-            <tr class="bg-white hover:bg-slate-50">
+            <tr class="group-tv">
               <td class="px-4 py-3 sticky-col font-medium">TV</td>
               <td class="px-4 py-3">Monthly CUME</td>
               <td class="px-4 py-3 text-center">1.2M</td>
@@ -150,7 +163,7 @@
               <td class="px-4 py-3 text-center text-green-600">↑</td>
             </tr>
             <!-- Radio -->
-            <tr class="bg-slate-50 hover:bg-slate-100">
+            <tr class="group-radio">
               <td class="px-4 py-3 sticky-col font-medium">Radio</td>
               <td class="px-4 py-3">Monthly CUME</td>
               <td class="px-4 py-3 text-center">850k</td>
@@ -159,7 +172,7 @@
               <td class="px-4 py-3 text-center text-green-600">↑</td>
             </tr>
             <!-- Streaming -->
-            <tr class="bg-white hover:bg-slate-50">
+            <tr class="group-streaming">
               <td class="px-4 py-3 sticky-col font-medium">Streaming</td>
               <td class="px-4 py-3">Livestream Sessions</td>
               <td class="px-4 py-3 text-center">18.2k</td>
@@ -168,7 +181,7 @@
               <td class="px-4 py-3 text-center text-green-600">↑</td>
             </tr>
             <!-- Digital -->
-            <tr class="bg-slate-50 hover:bg-slate-100">
+            <tr class="group-digital">
               <td class="px-4 py-3 sticky-col font-medium" rowspan="5">Digital</td>
               <td class="px-4 py-3">Total Monthly Users (TPR)</td>
               <td class="px-4 py-3 text-center">450k</td>
@@ -176,28 +189,28 @@
               <td class="px-4 py-3 text-center">435k</td>
               <td class="px-4 py-3 text-center text-green-600">↑</td>
             </tr>
-            <tr class="bg-slate-50 hover:bg-slate-100">
+            <tr class="group-digital">
               <td class="px-4 py-3">Total Monthly Users (RIPBS)</td>
               <td class="px-4 py-3 text-center">380k</td>
               <td class="px-4 py-3 text-center">365k</td>
               <td class="px-4 py-3 text-center">370k</td>
               <td class="px-4 py-3 text-center text-green-600">↑</td>
             </tr>
-            <tr class="bg-slate-50 hover:bg-slate-100">
+            <tr class="group-digital">
               <td class="px-4 py-3">Return Visitors (TPR)</td>
               <td class="px-4 py-3 text-center">125k</td>
               <td class="px-4 py-3 text-center">120k</td>
               <td class="px-4 py-3 text-center">122k</td>
               <td class="px-4 py-3 text-center text-green-600">↑</td>
             </tr>
-            <tr class="bg-slate-50 hover:bg-slate-100">
+            <tr class="group-digital">
               <td class="px-4 py-3">Return Visitors (RIPBS)</td>
               <td class="px-4 py-3 text-center">95k</td>
               <td class="px-4 py-3 text-center">90k</td>
               <td class="px-4 py-3 text-center">92k</td>
               <td class="px-4 py-3 text-center text-green-600">↑</td>
             </tr>
-            <tr class="bg-slate-50 hover:bg-slate-100">
+            <tr class="group-digital">
               <td class="px-4 py-3">OTT mobile Passport</td>
               <td class="px-4 py-3 text-center">28k</td>
               <td class="px-4 py-3 text-center">26k</td>
@@ -205,7 +218,7 @@
               <td class="px-4 py-3 text-center text-green-600">↑</td>
             </tr>
             <!-- Membership -->
-            <tr class="bg-white hover:bg-slate-50">
+            <tr class="group-membership">
               <td class="px-4 py-3 sticky-col font-medium" rowspan="6">Membership</td>
               <td class="px-4 py-3">Number of Members</td>
               <td class="px-4 py-3 text-center">12.5k</td>
@@ -213,35 +226,35 @@
               <td class="px-4 py-3 text-center">12.3k</td>
               <td class="px-4 py-3 text-center text-green-600">↑</td>
             </tr>
-            <tr class="bg-white hover:bg-slate-50">
+            <tr class="group-membership">
               <td class="px-4 py-3">New Members</td>
               <td class="px-4 py-3 text-center">450</td>
               <td class="px-4 py-3 text-center">420</td>
               <td class="px-4 py-3 text-center">430</td>
               <td class="px-4 py-3 text-center text-green-600">↑</td>
             </tr>
-            <tr class="bg-white hover:bg-slate-50">
+            <tr class="group-membership">
               <td class="px-4 py-3">Number of Major Donors</td>
               <td class="px-4 py-3 text-center">850</td>
               <td class="px-4 py-3 text-center">830</td>
               <td class="px-4 py-3 text-center">840</td>
               <td class="px-4 py-3 text-center text-green-600">↑</td>
             </tr>
-            <tr class="bg-white hover:bg-slate-50">
+            <tr class="group-membership">
               <td class="px-4 py-3">Sustainer Percentage</td>
               <td class="px-4 py-3 text-center">65%</td>
               <td class="px-4 py-3 text-center">63%</td>
               <td class="px-4 py-3 text-center">64%</td>
               <td class="px-4 py-3 text-center text-green-600">↑</td>
             </tr>
-            <tr class="bg-white hover:bg-slate-50">
+            <tr class="group-membership">
               <td class="px-4 py-3">Member Revenue</td>
               <td class="px-4 py-3 text-center">$2.8M</td>
               <td class="px-4 py-3 text-center">$2.7M</td>
               <td class="px-4 py-3 text-center">$2.75M</td>
               <td class="px-4 py-3 text-center text-green-600">↑</td>
             </tr>
-            <tr class="bg-white hover:bg-slate-50">
+            <tr class="group-membership">
               <td class="px-4 py-3">Major Donor Revenue</td>
               <td class="px-4 py-3 text-center">$1.4M</td>
               <td class="px-4 py-3 text-center">$1.3M</td>
@@ -249,7 +262,7 @@
               <td class="px-4 py-3 text-center text-green-600">↑</td>
             </tr>
             <!-- Social -->
-            <tr class="bg-slate-50 hover:bg-slate-100">
+            <tr class="group-social">
               <td class="px-4 py-3 sticky-col font-medium">Social</td>
               <td class="px-4 py-3">Total Followers</td>
               <td class="px-4 py-3 text-center">85k</td>
@@ -258,7 +271,7 @@
               <td class="px-4 py-3 text-center text-green-600">↑</td>
             </tr>
             <!-- Email -->
-            <tr class="bg-white hover:bg-slate-50">
+            <tr class="group-email">
               <td class="px-4 py-3 sticky-col font-medium" rowspan="2">Email</td>
               <td class="px-4 py-3">Total Subs (TPR + RIPBS)</td>
               <td class="px-4 py-3 text-center">45k</td>
@@ -266,7 +279,7 @@
               <td class="px-4 py-3 text-center">44k</td>
               <td class="px-4 py-3 text-center text-green-600">↑</td>
             </tr>
-            <tr class="bg-white hover:bg-slate-50">
+            <tr class="group-email">
               <td class="px-4 py-3">Avg CTR (TPR + RIPBS)</td>
               <td class="px-4 py-3 text-center">3.8%</td>
               <td class="px-4 py-3 text-center">3.6%</td>
@@ -274,7 +287,7 @@
               <td class="px-4 py-3 text-center text-green-600">↑</td>
             </tr>
             <!-- Podcasts -->
-            <tr class="bg-slate-50 hover:bg-slate-100">
+            <tr class="group-podcasts">
               <td class="px-4 py-3 sticky-col font-medium">Podcasts</td>
               <td class="px-4 py-3">Monthly Downloads</td>
               <td class="px-4 py-3 text-center">25k</td>
@@ -283,7 +296,7 @@
               <td class="px-4 py-3 text-center text-green-600">↑</td>
             </tr>
             <!-- Events -->
-            <tr class="bg-white hover:bg-slate-50">
+            <tr class="group-events">
               <td class="px-4 py-3 sticky-col font-medium" rowspan="2">Events</td>
               <td class="px-4 py-3">Total Events</td>
               <td class="px-4 py-3 text-center">12</td>
@@ -291,7 +304,7 @@
               <td class="px-4 py-3 text-center">11</td>
               <td class="px-4 py-3 text-center text-green-600">↑</td>
             </tr>
-            <tr class="bg-white hover:bg-slate-50">
+            <tr class="group-events">
               <td class="px-4 py-3">Total Event Attendees</td>
               <td class="px-4 py-3 text-center">2.4k</td>
               <td class="px-4 py-3 text-center">2.2k</td>
